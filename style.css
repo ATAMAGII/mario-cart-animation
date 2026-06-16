@@ -19,6 +19,7 @@ html, body{
 .grass{
   height: 30%;
   background: seagreen;
+  overflow: hidden;
 }
 
 .road{
@@ -28,22 +29,36 @@ html, body{
   border-top: 10px solid grey;
   border-bottom: 10px solid grey;
   width: 100%;
+  overflow: hidden;
 }
 
 .lines{
   box-sizing: border-box;
   border: 5px dashed #fff;
-  height: 8px;
+  height: 0px;
   width: 100%;
   position: absolute;
   top: 45%;
+}
+
+/*// TREES //*/
+
+.grass::before{
+  content: "🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲";
+  position: absolute;
+  font-size: 40px;
+  white-space: nowrap;
+  left: 0;
+  top: 5px;
+  animation: treeMove 4s linear infinite;
+  letter-spacing: 10px;
 }
 
 /*// ELEMENT TO ANIMATE //*/
 
 .mario{
   position: absolute;
-  top: -40px;
+  top: 10px;
   left: 0px;
  animation: drive 3s both infinite linear, 
            jump 0.3s 1.2s ease ;
@@ -68,12 +83,7 @@ html, body{
   position: absolute;
 }
 
-.cloud:nth-child(1){ 
-  top: 10px; 
-  width: 200px; 
-  animation: wind 80s linear infinite; 
-}
-
+.cloud:nth-child(1){ top: 10px; width: 200px; animation: wind 80s linear infinite; }
 .cloud:nth-child(2){ top: 40px; width: 300px; animation: wind 50s linear infinite; animation-delay: -10s; }
 .cloud:nth-child(3){ top: 70px; width: 150px; animation: wind 60s linear infinite; animation-delay: -20s; }
 .cloud:nth-child(4){ top: 100px; width: 250px; animation: wind 70s linear infinite; animation-delay: -30s; }
@@ -103,7 +113,17 @@ html, body{
 }
 
 @keyframes jump{
-  0%{ top: -40px;}
-  50%{ top: -100px;}
-  100%{ top: -40px;}
+  0%{ top: 10px;}
+  50%{ top: -50px;}
+  100%{ top: 10px;}
+}
+
+@keyframes roadMove{
+  from{ transform: translateX(0); }
+  to{ transform: translateX(-50%);}
+}
+
+@keyframes treeMove {
+   from{ transform: translateX(0); }
+  to{ transform: translateX(-50%);} 
 }
